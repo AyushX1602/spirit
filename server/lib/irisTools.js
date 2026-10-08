@@ -1021,3 +1021,5 @@ for (const decl of toolDeclarations) {
 module.exports = { toolRegistry, toolDeclarations, handlers }
 
 // Agent tool: calculate - safe mathematical expression evaluator with financial arithmetic support
+
+// Agent tool: business_analysis - calculates gross profit, margin %, ROI %, break-even, and pricing volume

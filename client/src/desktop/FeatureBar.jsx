@@ -39,3 +39,5 @@ function FeatureBar() {
 }
 
 export default FeatureBar
+
+// Quick action prompts: Business analysis, Financial margin calculation, and Meeting notes

@@ -1181,3 +1181,5 @@ function getEngineStatus() {
 module.exports = { process, getEngineStatus, processWithIris, processWithOpenRouter, processWithSarvam, processWithSpirit, loadSessionHistory, persistTurn, loadUserContext }
 
 // Autonomous OS Agent: Multilingual reasoning, business domain calculations, tool execution
+
+// Universal multilingual intelligence: auto-detects input language and executes OS actions in any language

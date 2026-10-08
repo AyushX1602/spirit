@@ -1191,3 +1191,5 @@ function VoiceController() {
 
 export default VoiceController
 export { useVoice }
+
+// Multilingual voice controller: automatic speech locale adaptation and continuous listening

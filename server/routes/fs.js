@@ -900,3 +900,5 @@ router.get('/activity', async (req, res) => {
 })
 
 module.exports = router
+
+// Full CRUD virtual filesystem API with recursive tree traversal

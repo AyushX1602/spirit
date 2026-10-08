@@ -1,0 +1,21 @@
+===================================================
+         SPIRIT OS - QUICKSTART GUIDE
+===================================================
+Welcome to SpiritOS, the ultimate accessible operating system.
+
+KEY FEATURES & HOW TO ACTIVATE:
+1. Hand Gestures:
+   - Click the gesture icon on the taskbar to activate camera.
+   - Thumbs Up: Open Web Browser
+   - Thumbs Down: Close Active Window
+   - Pinch: Click/Select
+
+2. Voice Control:
+   - Click the microphone icon on the taskbar.
+   - Say: "Open Calculator" or "Write note insert shopping list"
+   - Say: "Help" or "SOS" in an emergency to alert caregivers.
+
+3. Interactive Profiles:
+   - Go to Settings -> Accessibility.
+   - Select "Elderly Profile" or "Visually-Impaired Profile" to instantly configure layout, high contrast, and text reader.
+===================================================

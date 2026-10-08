@@ -1,0 +1,25 @@
+===========================================
+        PATIENT MEDICAL CARE PLAN
+===========================================
+Patient Name: Alice Johnson
+Age: 72
+Date: July 17, 2026
+
+DAILY MEDICATIONS:
+1. Donepezil (5mg)
+   - Purpose: Cognitive support
+   - Timing: Once daily before bedtime
+   
+2. Multivitamins & Omega-3
+   - Purpose: General health and memory support
+   - Timing: Once daily after breakfast
+
+SPECIAL INSTRUCTIONS:
+- Ensure 2 liters of water daily.
+- Evening walk in the park for 15-20 minutes.
+- Play memory games or review family albums in the afternoon.
+
+Emergency Contact:
+Name: John Doe 
+Phone: +91-99999999 - Primary Caregiver
+===========================================

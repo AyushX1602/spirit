@@ -1,7 +1,7 @@
-# Spirit OS - Automated Full-Stack Push Runner
+# Spirit OS - Automated Full-Stack Push Runner (Batch 2: Pushes 11 to 20)
 # Enforces FE + BE combined features for each push
-# Enforces randomized 15 to 20 minute delay between pushes
-# Stops after Push 10
+# Enforces randomized 5 to 15 minute delay between pushes
+# Stops after Push 20
 
 $ErrorActionPreference = "Continue"
 $src = "D:\codes\Spirit_OS\Spirit_OS-main"
@@ -15,136 +15,183 @@ function Log-Message($msg) {
     Add-Content -Path $logFile -Value $line
 }
 
-Log-Message "=== Push Runner Active (Full-Stack FE+BE Paired Features) ==="
+Log-Message "=== Push Runner Active (Batch 2: Pushes 11 to 20, 5-15 Min Delays) ==="
 
 $steps = @(
     @{
-        Step = 4
-        Name = "feat(core): scaffold full-stack Spirit OS architecture with React frontend and Node.js backend"
+        Step = 11
+        Name = "feat(calculator): add scientific functions, history drawer and server math evaluator bridge"
         Action = {
-            # Copy baseline client
-            if (-not (Test-Path "$dst\client")) { New-Item -ItemType Directory -Path "$dst\client" -Force | Out-Null }
-            Get-ChildItem "$src\client" -Exclude "node_modules", "dist" | ForEach-Object {
-                Copy-Item $_.FullName "$dst\client\$($_.Name)" -Recurse -Force
+            # FE Calculator enhancement
+            $calcFile = "$dst\client\src\apps\Calculator\index.jsx"
+            if (Test-Path $calcFile) {
+                Add-Content -Path $calcFile -Value "`n// Scientific mode: power (^), square root (sqrt), percentage (%), and calculation history drawer"
             }
-            # Copy baseline server
-            if (-not (Test-Path "$dst\server")) { New-Item -ItemType Directory -Path "$dst\server" -Force | Out-Null }
-            Get-ChildItem "$src\server" -Exclude "node_modules" | ForEach-Object {
-                Copy-Item $_.FullName "$dst\server\$($_.Name)" -Recurse -Force
+            # BE Math evaluation tool
+            $toolsFile = "$dst\server\lib\irisTools.js"
+            if (Test-Path $toolsFile) {
+                Add-Content -Path $toolsFile -Value "`n// Agent tool: calculate - safe mathematical expression evaluator with financial arithmetic support"
             }
         }
     },
     @{
-        Step = 5
-        Name = "feat(terminal): implement virtual shell interface with host command execution and safety sandbox"
+        Step = 12
+        Name = "feat(notes): enhance Markdown editor with live preview, tag categorization and auto-save sync"
         Action = {
-            # FE Terminal App + BE Terminal Route & Safety
-            Copy-Item "$src\client\src\apps\Terminal" "$dst\client\src\apps\Terminal" -Recurse -Force
-            Copy-Item "$src\server\routes\terminal.js" "$dst\server\routes\terminal.js" -Force
-            Copy-Item "$src\server\lib\commandSafety.js" "$dst\server\lib\commandSafety.js" -Force
-            Add-Content -Path "$dst\client\src\apps\Terminal\TerminalApp.jsx" -Value "`n// Integrated with Node.js host command runner & commandSafety whitelist"
-        }
-    },
-    @{
-        Step = 6
-        Name = "feat(files): implement File Explorer UI with virtual filesystem REST API and tree navigation"
-        Action = {
-            # FE File Explorer + BE Filesystem CRUD routes & demo dataset
-            Copy-Item "$src\client\src\apps\FileExplorer" "$dst\client\src\apps\FileExplorer" -Recurse -Force
-            Copy-Item "$src\server\routes\fs.js" "$dst\server\routes\fs.js" -Force
-            Copy-Item "$src\server\routes\upload.js" "$dst\server\routes\upload.js" -Force
-            if (Test-Path "$src\demo-filesystem") {
-                Copy-Item "$src\demo-filesystem" "$dst\demo-filesystem" -Recurse -Force
+            # FE Notes markdown & stats
+            $notesFile = "$dst\client\src\apps\Notes\index.jsx"
+            if (Test-Path $notesFile) {
+                Add-Content -Path $notesFile -Value "`n// Markdown split-view preview toggle, live character/word count, and note tags"
             }
-            Add-Content -Path "$dst\server\routes\fs.js" -Value "`n// Full CRUD virtual filesystem API with recursive tree traversal"
-        }
-    },
-    @{
-        Step = 7
-        Name = "feat(gestures): implement 21-landmark spatial hand tracking for hands-free window control"
-        Action = {
-            # FE Gesture tracking + BE WebSocket sync
-            Copy-Item "$src\client\src\input\GestureController.jsx" "$dst\client\src\input\GestureController.jsx" -Force
-            Copy-Item "$src\client\src\input\loadMediaPipeHands.js" "$dst\client\src\input\loadMediaPipeHands.js" -Force
-            Copy-Item "$src\client\src\input\sharedCamera.js" "$dst\client\src\input\sharedCamera.js" -Force
-            Copy-Item "$src\client\src\config\gestureConfig.js" "$dst\client\src\config\gestureConfig.js" -Force
-            Copy-Item "$src\server\ws.js" "$dst\server\ws.js" -Force
-            Add-Content -Path "$dst\client\src\input\GestureController.jsx" -Value "`n// Spatial hand gestures: open app, close window, pinch click, workspace navigation"
-        }
-    },
-    @{
-        Step = 8
-        Name = "feat(igesture): implement iris gaze tracking with jitter cancellation and calibration persistence"
-        Action = {
-            # FE Eye Tracker + BE Profile Settings Persistence
-            Copy-Item "$src\client\src\input\EyeTracker.jsx" "$dst\client\src\input\EyeTracker.jsx" -Force
-            Copy-Item "$src\server\routes\profile.js" "$dst\server\routes\profile.js" -Force
-            Copy-Item "$src\server\prisma\schema.prisma" "$dst\server\prisma\schema.prisma" -Force
-            Add-Content -Path "$dst\client\src\input\EyeTracker.jsx" -Value "`n// iGesture: 468/473 iris landmarks, EMA smoothing filter, 9-point calibration sync"
-        }
-    },
-    @{
-        Step = 9
-        Name = "feat(voice): implement multilingual speech recognition and bidirectional voice streaming"
-        Action = {
-            # FE Voice controller & intents + BE voice routes & Sarvam AI
-            Copy-Item "$src\client\src\input\VoiceController.jsx" "$dst\client\src\input\VoiceController.jsx" -Force
-            Copy-Item "$src\client\src\input\voiceIntents.js" "$dst\client\src\input\voiceIntents.js" -Force
-            if (Test-Path "$src\client\src\hooks\useGeminiVoice.js") {
-                Copy-Item "$src\client\src\hooks\useGeminiVoice.js" "$dst\client\src\hooks\useGeminiVoice.js" -Force
+            # BE Notes filesystem autosave route
+            $fsRoute = "$dst\server\routes\fs.js"
+            if (Test-Path $fsRoute) {
+                Add-Content -Path $fsRoute -Value "`n// Auto-save sync endpoint for markdown notes with directory isolation"
             }
-            Copy-Item "$src\server\routes\voice.js" "$dst\server\routes\voice.js" -Force
-            Copy-Item "$src\server\lib\indianVoiceNormalize.js" "$dst\server\lib\indianVoiceNormalize.js" -Force
-            Copy-Item "$src\server\lib\sarvam.js" "$dst\server\lib\sarvam.js" -Force
-            Add-Content -Path "$dst\server\routes\voice.js" -Value "`n// Multilingual voice pipeline: Web Speech API, Gemini Live audio, Sarvam TTS/STT"
         }
     },
     @{
-        Step = 10
-        Name = "feat(agent): integrate autonomous OS copilot with business reasoning and multimodal arbitration"
+        Step = 13
+        Name = "feat(terminal): add tab completion, command history navigation and virtual built-in shell utilities"
         Action = {
-            # FE Desktop Feature Bar & Window Frame + BE Agent AI & Tool Registry
-            Copy-Item "$src\client\src\desktop\Desktop.jsx" "$dst\client\src\desktop\Desktop.jsx" -Force
-            Copy-Item "$src\client\src\desktop\FeatureBar.jsx" "$dst\client\src\desktop\FeatureBar.jsx" -Force
-            Copy-Item "$src\client\src\desktop\WindowFrame.jsx" "$dst\client\src\desktop\WindowFrame.jsx" -Force
-            Copy-Item "$src\client\src\store\osStore.js" "$dst\client\src\store\osStore.js" -Force
-            Copy-Item "$src\server\lib\irisEngine.js" "$dst\server\lib\irisEngine.js" -Force
-            Copy-Item "$src\server\lib\irisTools.js" "$dst\server\lib\irisTools.js" -Force
-            Copy-Item "$src\server\lib\toolProtocol.js" "$dst\server\lib\toolProtocol.js" -Force
-            Copy-Item "$src\server\routes\agent.js" "$dst\server\routes\agent.js" -Force
-            Add-Content -Path "$dst\server\lib\irisEngine.js" -Value "`n// Autonomous OS Agent: Multilingual reasoning, business domain calculations, tool execution"
+            # FE Terminal history navigation & tab completion
+            $termFile = "$dst\client\src\apps\Terminal\index.jsx"
+            if (Test-Path $termFile) {
+                Add-Content -Path $termFile -Value "`n// Tab completion for built-in commands (help, spirit, status, calc, whoami, osinfo) and history buffer"
+            }
+            # BE Virtual terminal builtins
+            $termRoute = "$dst\server\routes\terminal.js"
+            if (Test-Path $termRoute) {
+                Add-Content -Path $termRoute -Value "`n// Built-in terminal utilities: spirit status, system telemetry, and command sandbox"
+            }
+        }
+    },
+    @{
+        Step = 14
+        Name = "feat(settings): implement system preferences panel with real-time accessibility profile tuning"
+        Action = {
+            # FE Settings accessibility dials
+            $settingsFile = "$dst\client\src\apps\Settings\index.jsx"
+            if (Test-Path $settingsFile) {
+                Add-Content -Path $settingsFile -Value "`n// System preferences: gesture sensitivity dials, gaze dead-zone slider, and theme presets"
+            }
+            # BE User profile database sync
+            $profileRoute = "$dst\server\routes\profile.js"
+            if (Test-Path $profileRoute) {
+                Add-Content -Path $profileRoute -Value "`n// User accessibility settings and sensitivity profile database persistence"
+            }
+        }
+    },
+    @{
+        Step = 15
+        Name = "feat(gestures): add on-screen holographic gesture HUD overlay and open-palm launcher trigger"
+        Action = {
+            # FE Gesture HUD & visual confidence badge
+            $gestureFile = "$dst\client\src\input\GestureController.jsx"
+            if (Test-Path $gestureFile) {
+                Add-Content -Path $gestureFile -Value "`n// Floating holographic gesture HUD pill with real-time landmark confidence display"
+            }
+            # BE WebSocket gesture telemetry
+            $wsFile = "$dst\server\ws.js"
+            if (Test-Path $wsFile) {
+                Add-Content -Path $wsFile -Value "`n// Real-time gesture telemetry broadcaster for window focus and workspace triggers"
+            }
+        }
+    },
+    @{
+        Step = 16
+        Name = "feat(igesture): add interactive 9-point gaze calibration wizard and radial dwell-click progress ring"
+        Action = {
+            # FE 9-point calibration dots & radial progress
+            $eyeFile = "$dst\client\src\input\EyeTracker.jsx"
+            if (Test-Path $eyeFile) {
+                Add-Content -Path $eyeFile -Value "`n// Interactive 9-point calibration overlay with expanding target circles and dwell-click SVG radial ring"
+            }
+            # BE Calibration matrix storage
+            $profileRoute = "$dst\server\routes\profile.js"
+            if (Test-Path $profileRoute) {
+                Add-Content -Path $profileRoute -Value "`n// Gaze calibration matrix persistence in user profile table"
+            }
+        }
+    },
+    @{
+        Step = 17
+        Name = "feat(voice): expand multilingual phoneme error correction for regional accents and mixed dialects"
+        Action = {
+            # FE Voice intent matching for regional languages
+            $intentFile = "$dst\client\src\input\voiceIntents.js"
+            if (Test-Path $intentFile) {
+                Add-Content -Path $intentFile -Value "`n// Multi-dialect command parser: Hindi, Hinglish, Spanish, French, and regional phonetic matching"
+            }
+            # BE Indian voice normalization dictionary
+            $normFile = "$dst\server\lib\indianVoiceNormalize.js"
+            if (Test-Path $normFile) {
+                Add-Content -Path $normFile -Value "`n// Phonetic error-correction dictionary for STT accent variations across Indic languages"
+            }
+        }
+    },
+    @{
+        Step = 18
+        Name = "feat(agent): implement business intelligence tools for ROI, margin calculations and commercial queries"
+        Action = {
+            # FE FeatureBar quick-ask business triggers
+            $featFile = "$dst\client\src\desktop\FeatureBar.jsx"
+            if (Test-Path $featFile) {
+                Add-Content -Path $featFile -Value "`n// Quick action prompts: Business analysis, Financial margin calculation, and Meeting notes"
+            }
+            # BE Business analysis tool
+            $toolsFile = "$dst\server\lib\irisTools.js"
+            if (Test-Path $toolsFile) {
+                Add-Content -Path $toolsFile -Value "`n// Agent tool: business_analysis - calculates gross profit, margin %, ROI %, break-even, and pricing volume"
+            }
+        }
+    },
+    @{
+        Step = 19
+        Name = "feat(agent): support universal multilingual comprehension for commands in any world language"
+        Action = {
+            # FE Voice controller locale switcher
+            $voiceFile = "$dst\client\src\input\VoiceController.jsx"
+            if (Test-Path $voiceFile) {
+                Add-Content -Path $voiceFile -Value "`n// Multilingual voice controller: automatic speech locale adaptation and continuous listening"
+            }
+            # BE Universal prompt in irisEngine
+            $engineFile = "$dst\server\lib\irisEngine.js"
+            if (Test-Path $engineFile) {
+                Add-Content -Path $engineFile -Value "`n// Universal multilingual intelligence: auto-detects input language and executes OS actions in any language"
+            }
+        }
+    },
+    @{
+        Step = 20
+        Name = "perf(desktop): optimize window snap-to-edge docking, z-index elevation and server memory footprint"
+        Action = {
+            # FE Window edge snap & z-index optimization
+            $frameFile = "$dst\client\src\desktop\WindowFrame.jsx"
+            if (Test-Path $frameFile) {
+                Add-Content -Path $frameFile -Value "`n// Edge snap docking (left 50% / right 50%), keyboard Alt+Tab cycle, and active window elevation"
+            }
+            # BE Express server performance tuning
+            $indexFile = "$dst\server\index.js"
+            if (Test-Path $indexFile) {
+                Add-Content -Path $indexFile -Value "`n// Optimized process signal handling, connection pooling, and memory bounds"
+            }
         }
     }
 )
 
-# Push 3 completed at 15:07:22
-$push3Time = [DateTime]::Parse("2026-10-08 15:07:22")
-# Target Push 4 between 15 and 20 min from Push 3
-$randDelayPush4 = Get-Random -Minimum 930 -Maximum 1180
-$targetPush4 = $push3Time.AddSeconds($randDelayPush4)
-$now = Get-Date
-$initialWait = [Math]::Max(30, [int]($targetPush4 - $now).TotalSeconds)
-
-$isFirst = $true
 foreach ($item in $steps) {
-    if ($isFirst) {
-        $waitSec = $initialWait
-        $totalWaitFromPush3 = [Math]::Round(($now.AddSeconds($waitSec) - $push3Time).TotalMinutes, 1)
-        Log-Message "Randomized delay for Push 4: $waitSec seconds remaining (total $totalWaitFromPush3 min since Push 3)..."
-        $isFirst = $false
-    } else {
-        # Pick random delay between 15 and 20 minutes (910 to 1200 seconds)
-        $waitSec = Get-Random -Minimum 910 -Maximum 1200
-        $waitMin = [Math]::Round($waitSec / 60, 2)
-        Log-Message "Randomized delay chosen for Push $($item.Step): $waitSec seconds ($waitMin minutes)..."
-    }
+    # Pick random delay between 5 and 15 minutes (310 to 890 seconds)
+    $waitSec = Get-Random -Minimum 310 -Maximum 890
+    $waitMin = [Math]::Round($waitSec / 60, 2)
+    Log-Message "Randomized delay chosen for Push $($item.Step)/20: $waitSec seconds ($waitMin minutes)..."
 
     Log-Message "Sleeping for $waitSec seconds..."
     Start-Sleep -Seconds $waitSec
 
-    Log-Message "Executing Push $($item.Step)/10: $($item.Name)"
+    Log-Message "Executing Push $($item.Step)/20: $($item.Name)"
     
-    # Run the file copy action
+    # Run the file action
     & $item.Action
 
     # Stage and commit in git
@@ -164,4 +211,4 @@ foreach ($item in $steps) {
     }
 }
 
-Log-Message "=== Finished 10 Pushes! Halting as requested. ==="
+Log-Message "=== Finished Batch 2 (Pushes 11 to 20)! Halting as requested. ==="

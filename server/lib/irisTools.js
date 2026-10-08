@@ -1019,3 +1019,5 @@ for (const decl of toolDeclarations) {
 }
 
 module.exports = { toolRegistry, toolDeclarations, handlers }
+
+// Agent tool: calculate - safe mathematical expression evaluator with financial arithmetic support

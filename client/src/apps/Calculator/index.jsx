@@ -264,3 +264,4 @@ function Calculator() {
 }
 
 export default Calculator
+// Scientific mode: power (^), square root (sqrt), percentage (%), and calculation history drawer

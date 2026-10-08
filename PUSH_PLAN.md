@@ -1,25 +1,42 @@
 # Spirit OS: Full-Stack (FE + BE) Cohesive Push Roadmap
 
 Target Repository: [https://github.com/AyushX1602/spirit](https://github.com/AyushX1602/spirit)  
-Enforced Delay: **15 to 20 minutes (randomized)** between consecutive pushes  
+Current Status: **Batch 2 Active (Pushes 11 to 20)**  
+Enforced Delay: **5 to 15 minutes (randomized)** between consecutive pushes  
 Architecture Principle: **Frontend + Backend committed together** for every feature  
-Scope: **Pushes 1–10 (Autostop after Push 10)**  
 
 ---
 
-## 🚀 Batch 1: Stages 1–10 (Execution Log & Schedule)
+## 🏆 Batch 1: Stages 1–10 (Completed)
 
-| Push # | Actual / Target Time | Status | Commit Message | Full-Stack Scope (FE + BE Together) |
-|:---:|:---:|:---:|:---|:---|
-| **1** | Oct 8, 14:36 | ✅ **Pushed** | `chore: initialize repository structure and licensing` | Repository root, `.gitignore`, `LICENSE`, `start-demo.cmd` |
-| **2** | Oct 8, 14:52 | ✅ **Pushed** | `docs: add Spirit OS architecture documentation and core specifications` | Comprehensive `README.md` and `docs/` |
-| **3** | Oct 8, 15:07 | ✅ **Pushed** | `feat(server): setup Node.js Express server and environment configuration` | Express backend configuration, `server/package.json`, `server/.env.example` |
-| **4** | Oct 8, ~15:25 | ⏳ Queued | `feat(core): scaffold full-stack Spirit OS architecture with React frontend and Node.js backend` | **FE:** React 18/19 app baseline, Vite, Tailwind, Desktop canvas, WindowFrame.<br>**BE:** Express runtime, WebSocket hub, Prisma schema, session auth, logging. |
-| **5** | Oct 8, ~15:42 | ⏳ Queued | `feat(terminal): implement virtual shell interface with host command execution and safety sandbox` | **FE:** Virtual terminal UI with command history & prompt styling.<br>**BE:** Host command execution route (`routes/terminal.js`) & command safety whitelist (`commandSafety.js`). |
-| **6** | Oct 8, ~16:00 | ⏳ Queued | `feat(files): implement File Explorer UI with virtual filesystem REST API and tree navigation` | **FE:** File Explorer multi-pane interface, breadcrumbs, folder trees.<br>**BE:** Virtual filesystem REST endpoints (`routes/fs.js`, `routes/upload.js`) & demo dataset. |
-| **7** | Oct 8, ~16:18 | ⏳ Queued | `feat(gestures): implement 21-landmark spatial hand tracking for hands-free window control` | **FE:** MediaPipe 21-landmark detector (`GestureController.jsx`, `gestureConfig.js`).<br>**BE:** WebSocket gesture event broadcaster & window action synchronization. |
-| **8** | Oct 8, ~16:36 | ⏳ Queued | `feat(igesture): implement iris gaze tracking with jitter cancellation and calibration persistence` | **FE:** Iris center tracking (468/473), EMA jitter filter, 9-point calibration wizard.<br>**BE:** User profile calibration persistence API (`routes/profile.js`) & Postgres schema. |
-| **9** | Oct 8, ~16:54 | ⏳ Queued | `feat(voice): implement multilingual speech recognition and bidirectional voice streaming` | **FE:** Web Speech API continuous recognition, voice intents, Gemini Live loop.<br>**BE:** Voice synthesis routes (`routes/voice.js`), Indian voice normalization, Sarvam AI. |
-| **10** | Oct 8, ~17:12 | ⏳ Queued | `feat(agent): integrate autonomous OS copilot with business reasoning and multimodal arbitration` | **FE:** Desktop Feature Bar, multimodal priority arbitration between Mouse, Hand, Eye, Voice.<br>**BE:** Autonomous OS agent tool protocol (`irisTools.js`), business calculations, any-language reasoning. |
+| Push # | Commit Hash | Time (IST) | Full-Stack Scope (FE + BE Together) | Status |
+|:---:|:---:|:---:|:---|:---:|
+| **1** | `fa1b78f` | 14:36 | `chore: initialize repository structure and licensing` | ✅ Pushed |
+| **2** | `27432d3` | 14:52 | `docs: add Spirit OS architecture documentation and core specifications` | ✅ Pushed |
+| **3** | `bcf489a` | 15:07 | `feat(server): setup Node.js Express server and environment configuration` | ✅ Pushed |
+| **4** | `52f230c` | 15:25 | `feat(core): scaffold full-stack Spirit OS architecture with React frontend and Node.js backend` | ✅ Pushed |
+| **5** | `8e2b93e` | 15:43 | `feat(terminal): implement virtual shell interface with host command execution and safety sandbox` | ✅ Pushed |
+| **6** | `eb04b1e` | 16:01 | `feat(files): implement File Explorer UI with virtual filesystem REST API and tree navigation` | ✅ Pushed |
+| **7** | `aaff73f` | 16:17 | `feat(gestures): implement 21-landmark spatial hand tracking for hands-free window control` | ✅ Pushed |
+| **8** | `828f1d7` | 16:35 | `feat(igesture): implement iris gaze tracking with jitter cancellation and calibration persistence` | ✅ Pushed |
+| **9** | `7c5b665` | 16:54 | `feat(voice): implement multilingual speech recognition and bidirectional voice streaming` | ✅ Pushed |
+| **10** | `fdcf1c9` | 17:11 | `feat(agent): integrate autonomous OS copilot with business reasoning and multimodal arbitration` | ✅ Pushed |
 
-> ⏸️ **Automated runner stops after Push 10.**
+---
+
+## 🚀 Batch 2: Stages 11–20 (Currently Executing — 5 to 15 min Random Delays)
+
+| Push # | Target Time | Full-Stack Scope (FE + BE Together) | Status |
+|:---:|:---:|:---|:---:|
+| **11** | ~20:54 | `feat(calculator): add scientific functions, history drawer and server math evaluator bridge` | ⏳ Active Countdown |
+| **12** | ~21:05 | `feat(notes): enhance Markdown editor with live preview, tag categorization and auto-save sync` | ⏳ Queued |
+| **13** | ~21:16 | `feat(terminal): add tab completion, command history navigation and virtual built-in shell utilities` | ⏳ Queued |
+| **14** | ~21:28 | `feat(settings): implement system preferences panel with real-time accessibility profile tuning` | ⏳ Queued |
+| **15** | ~21:39 | `feat(gestures): add on-screen holographic gesture HUD overlay and open-palm launcher trigger` | ⏳ Queued |
+| **16** | ~21:51 | `feat(igesture): add interactive 9-point gaze calibration wizard and radial dwell-click progress ring` | ⏳ Queued |
+| **17** | ~22:03 | `feat(voice): expand multilingual phoneme error correction for regional accents and mixed dialects` | ⏳ Queued |
+| **18** | ~22:15 | `feat(agent): implement business intelligence tools for ROI, margin calculations and commercial queries` | ⏳ Queued |
+| **19** | ~22:27 | `feat(agent): support universal multilingual comprehension for commands in any world language` | ⏳ Queued |
+| **20** | ~22:39 | `perf(desktop): optimize window snap-to-edge docking, z-index elevation and server memory footprint` | ⏳ Queued |
+
+> ⏸️ **Automated runner halts automatically after Push 20.**

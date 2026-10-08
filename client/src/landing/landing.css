@@ -1,0 +1,379 @@
+/* ============================================================
+   Spirit OS "” Landing Page CSS
+   Font-faces + design system tokens + component classes
+   (converted from Next.js globals.css for Vite/React)
+   ============================================================ */
+
+/* --- Custom fonts (loaded from client/public/fonts/) ------- */
+@font-face {
+  font-family: 'TT Neoris';
+  src: url('/fonts/tt-neoris-variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('/fonts/ibm-plex-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('/fonts/ibm-plex-mono-500.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('/fonts/departure-mono.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* --- CSS custom properties (design system tokens) ----------- */
+.landing-root {
+  --font-neoris: 'TT Neoris', system-ui, sans-serif;
+  --font-ibm-plex-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-departure-mono: 'Departure Mono', ui-monospace, monospace;
+
+  /* Override Spirit OS CSS variables that conflict with landing page */
+  --color-surface: #f5f5f2;
+  --color-surface-raised: #fbfbf8;
+  --color-surface-darker: #e7e7e3;
+  --color-ink: rgba(38, 35, 35, 0.8);
+  --color-ink-strongest: rgba(38, 35, 35, 0.9);
+  --color-ink-strong: rgba(38, 35, 35, 0.85);
+  --color-ink-muted: rgba(38, 35, 35, 0.7);
+  --color-ink-faint: rgba(38, 35, 35, 0.5);
+  --color-ink-solid: #202020;
+  --color-border-card: #dee2de;
+  --color-border-pill: #e3e3e0;
+  --color-feature-success: #34a853;
+  --color-feature-neutral: #bfbfbf;
+  --color-accent-brown: #a76451;
+  --color-blue-section: #1a6fd1;
+  --color-made-green: #549f4b;
+  --color-background: #f5f5f2;
+  --color-foreground: #171717;
+
+  /* Override Spirit OS root variables "” critical for Shadcn/Tailwind classes */
+  --background: #f5f5f2;
+  --foreground: #171717;
+  --surface: #f5f5f2;
+  --border: #dee2de;
+  --radius: 0.5rem;
+
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+
+  background: #f5f5f2;
+  color: rgba(38, 35, 35, 0.8);
+  font-family: 'TT Neoris', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "dlig" on;
+  font-variant-numeric: lining-nums tabular-nums;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow-y: visible;
+}
+
+/* When a landing page is active, ensure html also allows scrolling */
+body:has(.landing-root) {
+  overflow: auto !important;
+}
+
+body:has(.landing-root) html {
+  overflow: auto !important;
+}
+
+/* Force bg-background, text-foreground etc. to use landing values inside landing-root */
+.landing-root .bg-background { background-color: #f5f5f2 !important; }
+.landing-root .text-foreground { color: #171717 !important; }
+.landing-root .bg-foreground { background-color: #171717 !important; }
+.landing-root .border-border { border-color: #dee2de !important; }
+.landing-root * { border-color: #dee2de; }
+
+/* --- Keyframes ---------------------------------------------- */
+@keyframes hero-enter {
+  to { opacity: 1; transform: none; }
+}
+@keyframes shimmer {
+  0% { background-position: 0 0; }
+  80% { background-position: 100% 0; }
+  to { background-position: 100% 0; }
+}
+@keyframes wordsearch-stroke-cw {
+  0% { stroke-dashoffset: 1000px; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes wordsearch-letter-lvl1 {
+  0% { color: rgba(38,35,35,0.5); text-shadow: 0 1px rgba(255,255,255,0.30), 0 -1px 1px rgba(0,0,0,0.12); }
+  to { color: rgba(38,35,35,0.9); text-shadow: 0 1px rgba(255,255,255,0.35), 0 -1px 2px rgba(0,0,0,0.18); }
+}
+@keyframes logo-slide {
+  0% { transform: translate(0); }
+  to { transform: translate(-50%); }
+}
+@keyframes build-carousel-slide {
+  0% { transform: translate(0); }
+  to { transform: translate(-33.3333%); }
+}
+@keyframes testi-fade-in {
+  0% { opacity: 0; filter: blur(6px); }
+  60% { filter: blur(0); }
+  to { opacity: 1; filter: blur(0); }
+}
+@keyframes pui-fade-in {
+  0% { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes orch-section-fade-in {
+  0% { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes badge-enter {
+  0% { opacity: 0; transform: translateY(6px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes mm-bg-in {
+  0% { clip-path: circle(0% at 100% 0); opacity: 0; }
+  to { clip-path: circle(200% at 100% 0); opacity: 1; }
+}
+@keyframes mm-bg-out {
+  0% { clip-path: circle(200% at 100% 0); opacity: 1; }
+  to { clip-path: circle(0% at 100% 0); opacity: 0; }
+}
+@keyframes mm-link-in {
+  0% { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scroll-arrow {
+  0%, to { opacity: 0.4; transform: translateY(-3px); }
+  50% { opacity: 1; transform: translateY(3px); }
+}
+@keyframes footer-tilt {
+  0%, to { transform: rotate(-0.4deg); }
+  50% { transform: rotate(0.4deg); }
+}
+
+/* --- Component utility classes ------------------------------ */
+.nav-link {
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "dlig" on;
+  flex-direction: column;
+  align-items: center;
+  transition: color 0.2s, font-weight 0.2s;
+  display: inline-flex;
+}
+
+.glass-pill {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: linear-gradient(rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.08) 100%);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow:
+    inset 0 -1px rgba(0,0,0,0.12),
+    inset 0 -1px 2px rgba(0,0,0,0.10),
+    inset 0 1px 1px rgba(255,255,255,0.24);
+}
+
+.glass-pill-hover {
+  z-index: 2;
+  background: linear-gradient(rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.16) 100%);
+  overflow: hidden;
+  box-shadow:
+    inset 0 -1px rgba(0,0,0,0.12),
+    inset 0 -1px 2px rgba(0,0,0,0.10),
+    inset 0 2px 1px rgba(255,255,255,1.00);
+}
+
+.glass-pill-btn {
+  isolation: isolate;
+  background: transparent;
+  position: relative;
+}
+
+.glass-pill-btn-blur {
+  z-index: 0;
+  backdrop-filter: blur(16px) saturate(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  background-color: rgba(255,255,255,0.05);
+  overflow: hidden;
+}
+
+.glass-pill-btn-tint {
+  z-index: 1;
+  background: linear-gradient(rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.08) 100%);
+  overflow: hidden;
+  box-shadow:
+    inset 0 -1px rgba(0,0,0,0.12),
+    inset 0 -1px 2px rgba(0,0,0,0.10),
+    inset 0 1px 1px rgba(255,255,255,0.24);
+}
+
+.glass-hero-btn {
+  background: rgba(255,255,255,0.10);
+}
+
+.cta-btn {
+  background: #f1f1ee;
+  border: 1px solid rgba(32,32,32,0.10);
+  border-radius: 8px;
+  box-shadow:
+    0 1px 1px rgba(0,0,0,0.50),
+    0 0 0 1px rgba(255,255,255,0.23);
+}
+
+.cta-btn-dark {
+  background:
+    linear-gradient(rgba(32,32,32,0.10) 0% 100%),
+    linear-gradient(#4f4f4f 0%, rgba(32,32,32,0.85) 100%);
+  border: 1px solid #383838;
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 1px rgba(64,64,64,0.12),
+    inset 0 2px rgba(255,255,255,0.24),
+    inset 0 -0.5px 2px rgba(0,0,0,0.25),
+    0 2px 8px rgba(0,0,0,0.03),
+    0 3px 4px rgba(0,0,0,0.16);
+}
+
+.cta-btn-dark-hover {
+  border: 1px solid rgba(32,32,32,0.10);
+  background: #e7e7e1;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0.357px 1.5px rgba(255,255,255,0.35);
+}
+
+.btn-light-surface {
+  background: #f5f5f2;
+  border: 1px solid rgba(32,32,32,0.10);
+  border-radius: 8px;
+  transition: background-color 0.14s ease-out, box-shadow 0.14s ease-out;
+  box-shadow:
+    0 2px 3px rgba(0,0,0,0.06),
+    inset 0 0 0.357px 1.5px rgba(255,255,255,0.35),
+    inset 0 2px 0 #fff;
+}
+
+.hero-gradient-text {
+  color: #fff;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(160deg, #ffffff 0%, rgba(255,255,255,0.92) 60%, rgba(220,230,255,0.88) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero-stagger {
+  opacity: 0;
+  animation: 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards hero-enter;
+  animation-delay: calc(0.1s + var(--stagger, 0) * 0.4s);
+  transform: translateY(16px);
+}
+
+.shimmer {
+  color: rgba(38,35,35,0.10);
+  -webkit-text-fill-color: transparent;
+  background-color: rgba(38,35,35,0.30);
+  background-image: linear-gradient(90deg, rgba(38,35,35,0.30), rgba(38,35,35,0.80) 50%, rgba(38,35,35,0.30));
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 50px 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: 2.8s infinite shimmer;
+  display: inline;
+}
+
+.bg-pattern-footer {
+  background-image: url(/img/footer/bg-footer-pattern.png);
+  background-position: 50%;
+  background-repeat: repeat;
+  background-size: contain;
+}
+
+.radial-bg-gradient {
+  background: radial-gradient(circle, transparent 30%, #f5f5f2 80%);
+}
+
+.pixel-bg-hero {
+  position: relative;
+}
+
+.pixel-bg-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+}
+
+.footer-holo-rainbow {
+  background:
+    linear-gradient(
+      var(--hover-tilt-y, 0deg),
+      #ff6b6b 0%,
+      #ffd93d 16%,
+      #6bcf7f 33%,
+      #4dabf7 50%,
+      #845ef7 66%,
+      #ff6bcb 83%,
+      #ff6b6b 100%
+    );
+  background-size: 100% 200%;
+  background-position: 50% calc(50% + var(--hover-tilt-y, 0px));
+  mix-blend-mode: color-dodge;
+  filter: saturate(1.4);
+  transition: background-position 0.2s ease-out;
+}
+
+.wordsearch-letter {
+  font-family: var(--font-departure-mono), 'Departure Mono', monospace;
+  text-transform: uppercase;
+  transition: color 0.6s ease-out, text-shadow 0.6s ease-out;
+}
+
+.wordsearch-letter.lvl1 {
+  animation: 0.8s ease-out forwards wordsearch-letter-lvl1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dark-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.dark-scroll::-webkit-scrollbar-track { background: transparent; }
+.dark-scroll::-webkit-scrollbar-thumb { background: #383838; border-radius: 4px; }
+.dark-scroll::-webkit-scrollbar-thumb:hover { background: #4f4f4f; }
+
+.landing-root button {
+  font-family: inherit;
+}
+
+.landing-root ::selection {
+  background: rgba(187, 244, 81, 0.4);
+  color: #202020;
+}
+

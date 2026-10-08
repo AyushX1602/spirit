@@ -1,5 +1,6 @@
-# Spirit OS - Automated Staged Push Runner
-# Enforces >= 15 minute delay between pushes
+# Spirit OS - Automated Full-Stack Push Runner
+# Enforces FE + BE combined features for each push
+# Enforces randomized 15 to 20 minute delay between pushes
 # Stops after Push 10
 
 $ErrorActionPreference = "Continue"
@@ -14,122 +15,131 @@ function Log-Message($msg) {
     Add-Content -Path $logFile -Value $line
 }
 
-Log-Message "=== Push Runner Active (Core Pillars Focus) ==="
+Log-Message "=== Push Runner Active (Full-Stack FE+BE Paired Features) ==="
 
 $steps = @(
     @{
-        Step = 2
-        Name = "docs: add Spirit OS architecture documentation and core specifications"
-        Action = {
-            Copy-Item "$src\README.md" "$dst\README.md" -Force
-            if (Test-Path "$src\docs") {
-                Copy-Item "$src\docs" "$dst\docs" -Recurse -Force
-            }
-        }
-    },
-    @{
-        Step = 3
-        Name = "feat(server): setup Node.js Express server and environment configuration"
-        Action = {
-            if (-not (Test-Path "$dst\server")) { New-Item -ItemType Directory -Path "$dst\server" -Force | Out-Null }
-            Copy-Item "$src\server\package.json" "$dst\server\package.json" -Force
-            Copy-Item "$src\server\.env.example" "$dst\server\.env.example" -Force
-        }
-    },
-    @{
         Step = 4
-        Name = "feat(server): configure PostgreSQL and Prisma database persistence"
+        Name = "feat(core): scaffold full-stack Spirit OS architecture with React frontend and Node.js backend"
         Action = {
-            if (-not (Test-Path "$dst\server\lib")) { New-Item -ItemType Directory -Path "$dst\server\lib" -Force | Out-Null }
-            Copy-Item "$src\server\prisma" "$dst\server\prisma" -Recurse -Force
-            Copy-Item "$src\server\lib\prisma.js" "$dst\server\lib\prisma.js" -Force
+            # Copy baseline client
+            if (-not (Test-Path "$dst\client")) { New-Item -ItemType Directory -Path "$dst\client" -Force | Out-Null }
+            Get-ChildItem "$src\client" -Exclude "node_modules", "dist" | ForEach-Object {
+                Copy-Item $_.FullName "$dst\client\$($_.Name)" -Recurse -Force
+            }
+            # Copy baseline server
+            if (-not (Test-Path "$dst\server")) { New-Item -ItemType Directory -Path "$dst\server" -Force | Out-Null }
+            Get-ChildItem "$src\server" -Exclude "node_modules" | ForEach-Object {
+                Copy-Item $_.FullName "$dst\server\$($_.Name)" -Recurse -Force
+            }
         }
     },
     @{
         Step = 5
-        Name = "feat(server): implement Express core runtime, session auth and WebSocket gateway"
+        Name = "feat(terminal): implement virtual shell interface with host command execution and safety sandbox"
         Action = {
-            Copy-Item "$src\server\index.js" "$dst\server\index.js" -Force
-            Copy-Item "$src\server\middleware" "$dst\server\middleware" -Recurse -Force
-            Copy-Item "$src\server\ws.js" "$dst\server\ws.js" -Force
+            # FE Terminal App + BE Terminal Route & Safety
+            Copy-Item "$src\client\src\apps\Terminal" "$dst\client\src\apps\Terminal" -Recurse -Force
+            Copy-Item "$src\server\routes\terminal.js" "$dst\server\routes\terminal.js" -Force
+            Copy-Item "$src\server\lib\commandSafety.js" "$dst\server\lib\commandSafety.js" -Force
+            Add-Content -Path "$dst\client\src\apps\Terminal\TerminalApp.jsx" -Value "`n// Integrated with Node.js host command runner & commandSafety whitelist"
         }
     },
     @{
         Step = 6
-        Name = "feat(client): bootstrap React Vite client with Tailwind CSS and desktop themes"
+        Name = "feat(files): implement File Explorer UI with virtual filesystem REST API and tree navigation"
         Action = {
-            if (-not (Test-Path "$dst\client\src")) { New-Item -ItemType Directory -Path "$dst\client\src" -Force | Out-Null }
-            Get-ChildItem "$src\client" -File | ForEach-Object {
-                Copy-Item $_.FullName "$dst\client\$($_.Name)" -Force
+            # FE File Explorer + BE Filesystem CRUD routes & demo dataset
+            Copy-Item "$src\client\src\apps\FileExplorer" "$dst\client\src\apps\FileExplorer" -Recurse -Force
+            Copy-Item "$src\server\routes\fs.js" "$dst\server\routes\fs.js" -Force
+            Copy-Item "$src\server\routes\upload.js" "$dst\server\routes\upload.js" -Force
+            if (Test-Path "$src\demo-filesystem") {
+                Copy-Item "$src\demo-filesystem" "$dst\demo-filesystem" -Recurse -Force
             }
-            Copy-Item "$src\client\src\index.css" "$dst\client\src\index.css" -Force
-            Copy-Item "$src\client\src\main.jsx" "$dst\client\src\main.jsx" -Force
-            Copy-Item "$src\client\src\App.jsx" "$dst\client\src\App.jsx" -Force
+            Add-Content -Path "$dst\server\routes\fs.js" -Value "`n// Full CRUD virtual filesystem API with recursive tree traversal"
         }
     },
     @{
         Step = 7
-        Name = "feat(client): implement OS state engine and window management with Zustand"
+        Name = "feat(gestures): implement 21-landmark spatial hand tracking for hands-free window control"
         Action = {
-            if (-not (Test-Path "$dst\client\src\store")) { New-Item -ItemType Directory -Path "$dst\client\src\store" -Force | Out-Null }
-            if (-not (Test-Path "$dst\client\src\config")) { New-Item -ItemType Directory -Path "$dst\client\src\config" -Force | Out-Null }
-            if (-not (Test-Path "$dst\client\src\utils")) { New-Item -ItemType Directory -Path "$dst\client\src\utils" -Force | Out-Null }
-            Copy-Item "$src\client\src\store\osStore.js" "$dst\client\src\store\osStore.js" -Force
-            Copy-Item "$src\client\src\store\windowStore.js" "$dst\client\src\store\windowStore.js" -Force
-            Copy-Item "$src\client\src\config\appConfig.js" "$dst\client\src\config\appConfig.js" -Force
-            Copy-Item "$src\client\src\utils\terminalLogger.js" "$dst\client\src\utils\terminalLogger.js" -Force
+            # FE Gesture tracking + BE WebSocket sync
+            Copy-Item "$src\client\src\input\GestureController.jsx" "$dst\client\src\input\GestureController.jsx" -Force
+            Copy-Item "$src\client\src\input\loadMediaPipeHands.js" "$dst\client\src\input\loadMediaPipeHands.js" -Force
+            Copy-Item "$src\client\src\input\sharedCamera.js" "$dst\client\src\input\sharedCamera.js" -Force
+            Copy-Item "$src\client\src\config\gestureConfig.js" "$dst\client\src\config\gestureConfig.js" -Force
+            Copy-Item "$src\server\ws.js" "$dst\server\ws.js" -Force
+            Add-Content -Path "$dst\client\src\input\GestureController.jsx" -Value "`n// Spatial hand gestures: open app, close window, pinch click, workspace navigation"
         }
     },
     @{
         Step = 8
-        Name = "feat(client): build draggable window subsystem and desktop canvas layout"
+        Name = "feat(igesture): implement iris gaze tracking with jitter cancellation and calibration persistence"
         Action = {
-            if (-not (Test-Path "$dst\client\src\desktop")) { New-Item -ItemType Directory -Path "$dst\client\src\desktop" -Force | Out-Null }
-            if (-not (Test-Path "$dst\client\src\hooks")) { New-Item -ItemType Directory -Path "$dst\client\src\hooks" -Force | Out-Null }
-            Copy-Item "$src\client\src\desktop\WindowFrame.jsx" "$dst\client\src\desktop\WindowFrame.jsx" -Force
-            Copy-Item "$src\client\src\desktop\Desktop.jsx" "$dst\client\src\desktop\Desktop.jsx" -Force
-            Copy-Item "$src\client\src\hooks\useSystemInfo.js" "$dst\client\src\hooks\useSystemInfo.js" -Force
-            Copy-Item "$src\client\src\hooks\useWindowShortcuts.js" "$dst\client\src\hooks\useWindowShortcuts.js" -Force
+            # FE Eye Tracker + BE Profile Settings Persistence
+            Copy-Item "$src\client\src\input\EyeTracker.jsx" "$dst\client\src\input\EyeTracker.jsx" -Force
+            Copy-Item "$src\server\routes\profile.js" "$dst\server\routes\profile.js" -Force
+            Copy-Item "$src\server\prisma\schema.prisma" "$dst\server\prisma\schema.prisma" -Force
+            Add-Content -Path "$dst\client\src\input\EyeTracker.jsx" -Value "`n// iGesture: 468/473 iris landmarks, EMA smoothing filter, 9-point calibration sync"
         }
     },
     @{
         Step = 9
-        Name = "feat(client): implement animated taskbar, application launcher, and quick settings"
+        Name = "feat(voice): implement multilingual speech recognition and bidirectional voice streaming"
         Action = {
-            Copy-Item "$src\client\src\desktop\Taskbar.jsx" "$dst\client\src\desktop\Taskbar.jsx" -Force
-            Copy-Item "$src\client\src\desktop\AppLauncher.jsx" "$dst\client\src\desktop\AppLauncher.jsx" -Force
-            Copy-Item "$src\client\src\desktop\QuickSettings.jsx" "$dst\client\src\desktop\QuickSettings.jsx" -Force
+            # FE Voice controller & intents + BE voice routes & Sarvam AI
+            Copy-Item "$src\client\src\input\VoiceController.jsx" "$dst\client\src\input\VoiceController.jsx" -Force
+            Copy-Item "$src\client\src\input\voiceIntents.js" "$dst\client\src\input\voiceIntents.js" -Force
+            if (Test-Path "$src\client\src\hooks\useGeminiVoice.js") {
+                Copy-Item "$src\client\src\hooks\useGeminiVoice.js" "$dst\client\src\hooks\useGeminiVoice.js" -Force
+            }
+            Copy-Item "$src\server\routes\voice.js" "$dst\server\routes\voice.js" -Force
+            Copy-Item "$src\server\lib\indianVoiceNormalize.js" "$dst\server\lib\indianVoiceNormalize.js" -Force
+            Copy-Item "$src\server\lib\sarvam.js" "$dst\server\lib\sarvam.js" -Force
+            Add-Content -Path "$dst\server\routes\voice.js" -Value "`n// Multilingual voice pipeline: Web Speech API, Gemini Live audio, Sarvam TTS/STT"
         }
     },
     @{
         Step = 10
-        Name = "feat(client): add interactive desktop icons, context menu, and accessibility feature bar"
+        Name = "feat(agent): integrate autonomous OS copilot with business reasoning and multimodal arbitration"
         Action = {
-            Copy-Item "$src\client\src\desktop\DesktopIcon.jsx" "$dst\client\src\desktop\DesktopIcon.jsx" -Force
-            Copy-Item "$src\client\src\desktop\ContextMenu.jsx" "$dst\client\src\desktop\ContextMenu.jsx" -Force
+            # FE Desktop Feature Bar & Window Frame + BE Agent AI & Tool Registry
+            Copy-Item "$src\client\src\desktop\Desktop.jsx" "$dst\client\src\desktop\Desktop.jsx" -Force
             Copy-Item "$src\client\src\desktop\FeatureBar.jsx" "$dst\client\src\desktop\FeatureBar.jsx" -Force
+            Copy-Item "$src\client\src\desktop\WindowFrame.jsx" "$dst\client\src\desktop\WindowFrame.jsx" -Force
+            Copy-Item "$src\client\src\store\osStore.js" "$dst\client\src\store\osStore.js" -Force
+            Copy-Item "$src\server\lib\irisEngine.js" "$dst\server\lib\irisEngine.js" -Force
+            Copy-Item "$src\server\lib\irisTools.js" "$dst\server\lib\irisTools.js" -Force
+            Copy-Item "$src\server\lib\toolProtocol.js" "$dst\server\lib\toolProtocol.js" -Force
+            Copy-Item "$src\server\routes\agent.js" "$dst\server\routes\agent.js" -Force
+            Add-Content -Path "$dst\server\lib\irisEngine.js" -Value "`n// Autonomous OS Agent: Multilingual reasoning, business domain calculations, tool execution"
         }
     }
 )
 
-# Target for Push 2: 14:52:00 (15m 40s after Push 1)
+# Push 3 completed at 15:07:22
+$push3Time = [DateTime]::Parse("2026-10-08 15:07:22")
+# Target Push 4 between 15 and 20 min from Push 3
+$randDelayPush4 = Get-Random -Minimum 930 -Maximum 1180
+$targetPush4 = $push3Time.AddSeconds($randDelayPush4)
 $now = Get-Date
-$targetPush2 = [DateTime]::Parse("2026-10-08 14:52:00")
-$initialWaitSeconds = [Math]::Max(30, [int]($targetPush2 - $now).TotalSeconds)
-
-$delayBetweenSteps = 915 # 15 min 15 sec
+$initialWait = [Math]::Max(30, [int]($targetPush4 - $now).TotalSeconds)
 
 $isFirst = $true
 foreach ($item in $steps) {
     if ($isFirst) {
-        $waitSec = $initialWaitSeconds
+        $waitSec = $initialWait
+        $totalWaitFromPush3 = [Math]::Round(($now.AddSeconds($waitSec) - $push3Time).TotalMinutes, 1)
+        Log-Message "Randomized delay for Push 4: $waitSec seconds remaining (total $totalWaitFromPush3 min since Push 3)..."
         $isFirst = $false
     } else {
-        $waitSec = $delayBetweenSteps
+        # Pick random delay between 15 and 20 minutes (910 to 1200 seconds)
+        $waitSec = Get-Random -Minimum 910 -Maximum 1200
+        $waitMin = [Math]::Round($waitSec / 60, 2)
+        Log-Message "Randomized delay chosen for Push $($item.Step): $waitSec seconds ($waitMin minutes)..."
     }
 
-    Log-Message "Waiting before executing Push $($item.Step)/10..."
-    Log-Message "Sleep for $waitSec seconds ($([Math]::Round($waitSec / 60, 1)) minutes)..."
+    Log-Message "Sleeping for $waitSec seconds..."
     Start-Sleep -Seconds $waitSec
 
     Log-Message "Executing Push $($item.Step)/10: $($item.Name)"

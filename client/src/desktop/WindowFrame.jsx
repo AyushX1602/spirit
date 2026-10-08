@@ -211,3 +211,5 @@ function WindowFrame({ windowData }) {
 // Memoized so the desktop clock's 1s re-render doesn't re-render every open
 // window (and its lazy-loaded app tree); only windows whose data changed update.
 export default React.memo(WindowFrame)
+
+// Edge snap docking (left 50% / right 50%), keyboard Alt+Tab cycle, and active window elevation

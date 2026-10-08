@@ -1179,3 +1179,5 @@ function getEngineStatus() {
 }
 
 module.exports = { process, getEngineStatus, processWithIris, processWithOpenRouter, processWithSarvam, processWithSpirit, loadSessionHistory, persistTurn, loadUserContext }
+
+// Autonomous OS Agent: Multilingual reasoning, business domain calculations, tool execution

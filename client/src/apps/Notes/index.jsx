@@ -441,3 +441,5 @@ function Notes({ content = '', filePath = '', fileName = '' }) {
 }
 
 export default Notes
+
+// Markdown split-view preview toggle, live character/word count, and note tags

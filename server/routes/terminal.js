@@ -121,3 +121,5 @@ router.get('/allowed', (req, res) => {
 })
 
 module.exports = router
+
+// Built-in terminal utilities: spirit status, system telemetry, and command sandbox

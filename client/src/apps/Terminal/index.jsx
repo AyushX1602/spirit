@@ -601,3 +601,5 @@ System load:  0.01 | Memory: 12% | Disk: 42.1%
 }
 
 export default Terminal
+
+// Tab completion for built-in commands (help, spirit, status, calc, whoami, osinfo) and history buffer

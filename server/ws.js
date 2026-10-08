@@ -282,3 +282,4 @@ module.exports = {
   sendNotification,
   sendAgentStatus
 }
+// Real-time gesture telemetry broadcaster for window focus and workspace triggers

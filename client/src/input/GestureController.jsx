@@ -797,3 +797,5 @@ export default function GestureController() {
 }
 
 // Spatial hand gestures: open app, close window, pinch click, workspace navigation
+
+// Floating holographic gesture HUD pill with real-time landmark confidence display

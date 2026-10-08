@@ -705,3 +705,5 @@ export default function Settings() {
     </div>
   )
 }
+
+// System preferences: gesture sensitivity dials, gaze dead-zone slider, and theme presets

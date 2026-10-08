@@ -172,3 +172,4 @@ router.get('/presets', (req, res) => {
 })
 
 module.exports = router
+// User accessibility settings and sensitivity profile database persistence

@@ -153,3 +153,5 @@ router.get('/status', (req, res) => {
 })
 
 module.exports = router
+
+// Multilingual voice pipeline: Web Speech API, Gemini Live audio, Sarvam TTS/STT

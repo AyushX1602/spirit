@@ -795,3 +795,5 @@ export default function GestureController() {
     </>
   )
 }
+
+// Spatial hand gestures: open app, close window, pinch click, workspace navigation

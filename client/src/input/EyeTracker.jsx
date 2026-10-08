@@ -655,3 +655,5 @@ export default function EyeTracker() {
 }
 
 // iGesture: 468/473 iris landmarks, EMA smoothing filter, 9-point calibration sync
+
+// Interactive 9-point calibration overlay with expanding target circles and dwell-click SVG radial ring

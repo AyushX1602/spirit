@@ -173,3 +173,5 @@ router.get('/presets', (req, res) => {
 
 module.exports = router
 // User accessibility settings and sensitivity profile database persistence
+
+// Gaze calibration matrix persistence in user profile table

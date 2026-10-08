@@ -472,3 +472,5 @@ export async function executeIntent({ intent, args }, deps) {
       return null
   }
 }
+
+// Multi-dialect command parser: Hindi, Hinglish, Spanish, French, and regional phonetic matching

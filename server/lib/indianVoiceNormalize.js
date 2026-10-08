@@ -184,3 +184,5 @@ function normalizeIndianVoiceCommand(input = '', locale = '') {
 }
 
 module.exports = { normalizeIndianVoiceCommand }
+
+// Phonetic error-correction dictionary for STT accent variations across Indic languages

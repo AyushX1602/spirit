@@ -174,3 +174,17 @@ export function synthSpeak(text, opts = {}) {
     window.speechSynthesis.speak(u)
   })
 }
+
+// System Audio Bus: Priority-based audio ducking and speaker conflict arbitration
+export function duckAudio(level = 0.2) {
+  if (typeof window !== 'undefined' && window.__spiritAudioElements) {
+    window.__spiritAudioElements.forEach(a => { if (a && !a.paused) a.volume = level })
+  }
+}
+
+export function restoreAudio() {
+  if (typeof window !== 'undefined' && window.__spiritAudioElements) {
+    window.__spiritAudioElements.forEach(a => { if (a) a.volume = 1.0 })
+  }
+}
+

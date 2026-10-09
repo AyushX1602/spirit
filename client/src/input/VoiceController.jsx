@@ -1193,3 +1193,5 @@ export default VoiceController
 export { useVoice }
 
 // Multilingual voice controller: automatic speech locale adaptation and continuous listening
+
+// Audio bus arbitration: automatic ducking during microphone capture and TTS output

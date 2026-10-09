@@ -152,6 +152,22 @@ router.get('/status', (req, res) => {
   })
 })
 
+
+// GET /api/voice/speakers - list supported neural voice personas and language capabilities
+router.get('/speakers', (req, res) => {
+  res.json({
+    speakers: [
+      { id: 'shubh', gender: 'male', language: 'hi-IN', model: 'sarvam-bulbul-v1', native: true },
+      { id: 'anushka', gender: 'female', language: 'hi-IN', model: 'sarvam-bulbul-v1', native: true },
+      { id: 'riya', gender: 'female', language: 'en-IN', model: 'gnani-neural', native: true },
+      { id: 'aditya', gender: 'male', language: 'hi-IN', model: 'sarvam-bulbul-v1', native: true },
+      { id: 'priya', gender: 'female', language: 'hi-IN', model: 'sarvam-bulbul-v1', native: true }
+    ],
+    sampleRate: 24000,
+    arbitration: 'priority-ducking'
+  })
+})
+
 module.exports = router
 
 // Multilingual voice pipeline: Web Speech API, Gemini Live audio, Sarvam TTS/STT

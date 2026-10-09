@@ -182,3 +182,5 @@ module.exports = {
   listWorkflows,
   deleteWorkflow
 }
+
+// Macro recipe runner: chained multi-step OS workflows (open app -> query tool -> export note) with error rollback

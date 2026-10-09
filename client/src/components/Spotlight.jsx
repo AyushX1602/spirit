@@ -573,3 +573,5 @@ export default function Spotlight() {
     document.body
   )
 }
+
+// Spotlight workflow triggers: 'Daily Standup Prep', 'System Health Check', 'Export All Notes' macro actions

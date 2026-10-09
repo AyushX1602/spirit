@@ -128,3 +128,5 @@ router.delete('/schedule/:id', (req, res) => {
 })
 
 module.exports = router
+
+// Multi-step automation execution pipeline with step status reporting and security validation

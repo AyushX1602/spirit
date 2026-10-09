@@ -41,3 +41,5 @@ function FeatureBar() {
 export default FeatureBar
 
 // Quick action prompts: Business analysis, Financial margin calculation, and Meeting notes
+
+// Quick macro automation launcher: executes chained multi-step OS actions with single click

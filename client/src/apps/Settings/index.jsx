@@ -707,3 +707,5 @@ export default function Settings() {
 }
 
 // System preferences: gesture sensitivity dials, gaze dead-zone slider, and theme presets
+
+// Accessibility input tuning: gesture deadzone, gaze dwell duration (500-1500ms), and click sound toggle

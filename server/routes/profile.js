@@ -175,3 +175,5 @@ module.exports = router
 // User accessibility settings and sensitivity profile database persistence
 
 // Gaze calibration matrix persistence in user profile table
+
+// Persistent input settings: gesture sensitivity, gaze dwell delay, and sound feedback preferences

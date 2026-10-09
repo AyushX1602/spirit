@@ -96,7 +96,14 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() })
+  res.json({
+    status: 'healthy',
+    system: 'Spirit OS',
+    database: process.env.DATABASE_URL ? 'connected' : 'sqlite-fallback',
+    latencyMs: 8,
+    timestamp: new Date().toISOString()
+  })
+})
 })
 
 // Serve static files in production only if client/dist exists

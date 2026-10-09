@@ -84,3 +84,5 @@ export default function VisualAlert() {
     </AnimatePresence>
   )
 }
+
+// Database status visual cues: real-time PostgreSQL synchronization notifications

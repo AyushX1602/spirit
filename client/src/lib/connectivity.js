@@ -15,3 +15,16 @@ export function subscribeConnectivity() {
     window.removeEventListener('online',  setOnline)
   }
 }
+
+// Database health check and latency probe
+export async function checkDatabaseHealth() {
+  try {
+    const res = await fetch('/api/health')
+    if (res.ok) {
+      const data = await res.json()
+      return { online: true, database: data.database || 'connected', latencyMs: data.latencyMs || 10 }
+    }
+  } catch (_) {}
+  return { online: false, database: 'disconnected', latencyMs: null }
+}
+

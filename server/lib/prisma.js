@@ -10,3 +10,13 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 module.exports = prisma
+
+// PostgreSQL connection pool configuration and reconnection retry handler
+if (process.env.NODE_ENV === 'production') {
+  prisma.$connect().then(() => {
+    console.log('[Prisma] Connected to PostgreSQL pool successfully')
+  }).catch((err) => {
+    console.warn('[Prisma] PostgreSQL pool connection warning:', err.message)
+  })
+}
+

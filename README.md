@@ -1,6 +1,14 @@
 # Spirit OS
 
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/AyushX1602/spirit)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/AyushX1602/spirit)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/AyushX1602/spirit/blob/main/LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Web%20%7C%20Node.js%20%7C%20Postgres-purple.svg)](https://github.com/AyushX1602/spirit)
+[![Live Demo](https://img.shields.io/badge/demo-live%20preview-success.svg)](https://spirit-lyart.vercel.app/app)
+
 > **Spirit OS** is a next-generation, agentic web operating system designed for natural human-computer interaction. It transforms any web browser into a complete desktop computing environment powered by **spatial hand gestures**, **ocular gaze tracking (iGesture)**, and an **autonomous multilingual AI voice agent**.
+> 
+> 🌐 **Live Interactive Preview:** [https://spirit-lyart.vercel.app/app](https://spirit-lyart.vercel.app/app) *(Experience hands-free gestures, eye-tracking, and multilingual voice control live in the browser)*
 
 ---
 

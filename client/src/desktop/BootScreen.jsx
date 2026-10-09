@@ -40,7 +40,7 @@ export default function BootScreen({ onDone }) {
             SpiritOS
           </h1>
           <p className="text-sm text-[#7b7fc4] mt-1">
-            Accessible Computing for Everyone
+            Accessible Computing for Everyone - v1.0 Production
           </p>
         </div>
 

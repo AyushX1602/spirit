@@ -104,7 +104,6 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString()
   })
 })
-})
 
 // Serve static files in production only if client/dist exists
 const fs = require('fs')
@@ -117,7 +116,7 @@ if (process.env.NODE_ENV === 'production' && fs.existsSync(clientDistPath)) {
 } else {
   // Default route for API-only server
   app.get('/', (req, res) => {
-    res.json({ message: 'SavitaOS Backend API', status: 'ok', timestamp: new Date().toISOString() })
+    res.json({ message: 'Spirit OS Backend API v1.0.0', status: 'ok', timestamp: new Date().toISOString() })
   })
 }
 
@@ -130,7 +129,7 @@ initWS(httpServer)
 
 // Start server
 httpServer.listen(PORT, () => {
-  console.log(`SavitaOS backend running on port ${PORT}`)
+  console.log(`Spirit OS backend running on port ${PORT}`)
   console.log(`API: http://localhost:${PORT}/api`)
   console.log(`WebSocket: ws://localhost:${PORT}`)
 })

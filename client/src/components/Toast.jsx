@@ -117,3 +117,5 @@ export function ToastContainer() {
     document.body
   )
 }
+
+// Security alert banner and API rate-limiting notification feedback

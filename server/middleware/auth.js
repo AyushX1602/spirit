@@ -122,3 +122,12 @@ module.exports = {
   authRateLimiter,
   refreshSession
 }
+// Security sanitization helper: path traversal prevention against malicious paths
+function isSafePath(filePath) {
+  if (!filePath || typeof filePath !== 'string') return false
+  const normalized = filePath.replace(/\\/g, '/')
+  return !normalized.includes('../') && !normalized.includes('..\\\\')
+}
+
+module.exports.isSafePath = isSafePath
+

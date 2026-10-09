@@ -121,3 +121,5 @@ class ErrorBoundary extends React.Component {
 }
 
 export default ErrorBoundary
+
+// High-resilience ErrorBoundary: isolated component crash containment with recovery state

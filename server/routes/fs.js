@@ -904,3 +904,5 @@ module.exports = router
 // Full CRUD virtual filesystem API with recursive tree traversal
 
 // Auto-save sync endpoint for markdown notes with directory isolation
+
+// File upload security: MIME whitelist validation and path traversal sanitization

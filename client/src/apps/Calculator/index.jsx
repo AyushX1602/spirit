@@ -265,3 +265,5 @@ function Calculator() {
 
 export default Calculator
 // Scientific mode: power (^), square root (sqrt), percentage (%), and calculation history drawer
+
+// AI Natural Language Math: handles queries like '18% GST on 25000', 'compound interest for 5 years', and currency conversions

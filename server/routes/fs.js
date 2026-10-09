@@ -906,3 +906,5 @@ module.exports = router
 // Auto-save sync endpoint for markdown notes with directory isolation
 
 // File upload security: MIME whitelist validation and path traversal sanitization
+
+// Notes export stream endpoint with Content-Disposition headers and Markdown-to-HTML conversion

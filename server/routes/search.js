@@ -168,3 +168,5 @@ router.get('/spotlight', async (req, res) => {
 })
 
 module.exports = router
+
+// Tag-based indexing for notes and virtual filesystem documents

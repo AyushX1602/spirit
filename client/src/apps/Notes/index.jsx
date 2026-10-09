@@ -443,3 +443,5 @@ function Notes({ content = '', filePath = '', fileName = '' }) {
 export default Notes
 
 // Markdown split-view preview toggle, live character/word count, and note tags
+
+// Document export formats (.md, .html, .txt), categorized tag chips (#work, #finance, #ideas), and reading time estimation
